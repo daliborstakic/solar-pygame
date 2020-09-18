@@ -35,15 +35,25 @@ class Planet():
         """ Returns the coordinates """
         return self._x, self._y
 
-    @property.setter
-    def x(self, x):
-        """ X coordinate setter """
-        self._x = x
+    @property
+    def x(self):
+        """ X coordinate getter """
+        return self._x
 
-    @property.setter
+    @property
+    def y(self):
+        """ Y coordinate getter """
+        return self._y
+
+    @y.setter
     def y(self, y):
         """ Y coordinate setter """
         self._y = y
+
+    @x.setter
+    def x(self, x):
+        """ X coordinate setter """
+        self._x = x
 
     def draw(self, win):
         """ Draws the planet """
