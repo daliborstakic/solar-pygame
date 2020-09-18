@@ -5,12 +5,12 @@ class Planet():
         self._x = x
         self._y = y
         self._mass = mass
-        self._initial_velocity = Vector2(dx, dy)
+        self._init_velocity = Vector2(dx, dy)
 
     @property
     def mass(self):
         return self._mass
 
     @property
-    def initial_velocity(self):
-        return self._initial_velocity
+    def init_velocity(self):
+        return self._init_velocity
