@@ -1,6 +1,6 @@
 from typing import AwaitableGenerator
 import pygame
-from math import atan2, sin, cos
+from math import atan2, sin, cos, hypot
 from planet import Planet
 
 # Screen size
@@ -34,6 +34,13 @@ def return_direction(angle):
     dy = sin(angle)
 
     return dx, dy
+
+def distance(p1, p2):
+    """ Returns the distance between two points """
+    x1, y1 = p1
+    x2, y2 = p2
+
+    return hypot((x2 - x1), (y2 - y1))
 
 def main(surface):
     """ Main function """
