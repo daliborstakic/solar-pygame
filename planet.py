@@ -57,7 +57,7 @@ class Planet():
 
     def draw(self, win):
         """ Draws the planet """
-        pygame.draw.circle(win, self.color, (self.x + self.radius // 2, self.y + self.radius // 2))
+        pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
 
     def move(self):
         self.x += self.velocity.x
