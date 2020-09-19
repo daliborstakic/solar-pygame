@@ -1,4 +1,6 @@
+from typing import AwaitableGenerator
 import pygame
+from math import atan2, sin, cos
 from planet import Planet
 
 # Screen size
@@ -15,6 +17,13 @@ def draw_planets(surface, planets):
         planet.draw(surface)
 
     pygame.display.update()
+
+def calculate_angle(p1, p2):
+    """ Calculates the angle between two points """
+    x1, y1 = p1
+    x2, y2 = p2
+    
+    return atan2((y2 - y1), (x2 - x1))
 
 def main(surface):
     """ Main function """
