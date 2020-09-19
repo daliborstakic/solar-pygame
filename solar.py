@@ -28,6 +28,13 @@ def calculate_angle(p1, p2):
 
     return atan2((y2 - y1), (x2 - x1))
 
+def return_direction(angle):
+    """ Returns two values between -1 and 1 which indicate the direction """
+    dx = cos(angle)
+    dy = sin(angle)
+
+    return dx, dy
+
 def main(surface):
     """ Main function """
     run = True
@@ -40,6 +47,8 @@ def main(surface):
     planets = [sun, earth]
 
     while run:
+        clock.tick(60)
+
         draw_planets(surface, planets)
 
         for event in pygame.event.get():
