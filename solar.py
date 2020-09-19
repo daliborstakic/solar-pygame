@@ -11,6 +11,9 @@ H_WIDTH = WIDTH // 2
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
+# Clock
+clock = pygame.time.Clock()
+
 def draw_planets(surface, planets):
     """ Draws the planets """
     for planet in planets:
@@ -22,7 +25,7 @@ def calculate_angle(p1, p2):
     """ Calculates the angle between two points """
     x1, y1 = p1
     x2, y2 = p2
-    
+
     return atan2((y2 - y1), (x2 - x1))
 
 def main(surface):
