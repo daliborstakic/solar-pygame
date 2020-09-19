@@ -1,4 +1,3 @@
-from typing import AwaitableGenerator
 import pygame
 from math import atan2, sin, cos, hypot
 from planet import Planet
@@ -8,6 +7,7 @@ WIDTH = 500
 H_WIDTH = WIDTH // 2
 
 # Colors
+BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
@@ -16,6 +16,8 @@ clock = pygame.time.Clock()
 
 def draw_planets(surface, planets):
     """ Draws the planets """
+    win.fill(BLACK)
+
     for planet in planets:
         planet.draw(surface)
 
@@ -42,6 +44,23 @@ def distance(p1, p2):
 
     return hypot((x2 - x1), (y2 - y1))
 
+def move(pl1, pl2):
+    """ Moves one planet to the other """
+
+    # Angle between two planets
+    angle = calculate_angle(pl1.coordinates, pl2.coordinates)
+    
+    # Distance between two points
+    _distance = distance(pl1.coordinates, pl2.coordinates)
+
+    # Direction vector
+    dx, dy = return_direction(angle)
+    direction_vector = pygame.Vector2(dx, dy)
+
+    if distance != 0:
+        pl1.x += int(direction_vector.x)
+        pl1.y += int(direction_vector.y)
+
 def main(surface):
     """ Main function """
     run = True
@@ -56,6 +75,7 @@ def main(surface):
     while run:
         clock.tick(60)
 
+        move(earth, sun)
         draw_planets(surface, planets)
 
         for event in pygame.event.get():
