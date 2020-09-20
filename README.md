@@ -16,4 +16,4 @@ Maybe more constant orbits.
 
 ### References
 * [StackOverflow question](https://stackoverflow.com/questions/60213103/use-vector2-in-pygame)
-* [Pygame docs] (https://www.pygame.org/docs/ref/math.html#pygame.math.Vector2)
+* [Pygame docs](https://www.pygame.org/docs/ref/math.html#pygame.math.Vector2)
