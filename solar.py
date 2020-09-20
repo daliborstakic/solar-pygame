@@ -5,7 +5,7 @@ from pygame import surface
 from planet import Planet
 
 # Screen size
-WIDTH = 500
+WIDTH = 600
 H_WIDTH = WIDTH // 2
 
 # Colors
@@ -13,13 +13,21 @@ BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 GRAY = (200, 200, 200)
+RED = (255, 0, 0)
+PURPLE = (128, 0, 128)
+ORANGE = (255, 165, 0)
+JUPITER = (191, 177, 119)
+URANUS = (78, 160, 163)
 
 # Clock
 clock = pygame.time.Clock()
 
-def draw_planets(surface, planets):
+def draw_planets(surface, planets, sun):
     """ Draws the planets """
     win.fill(BLACK)
+    
+    # Easier without the sun in the list
+    sun.draw(surface)
 
     for planet in planets:
         planet.draw(surface)
@@ -57,7 +65,7 @@ def move_planets(pl1, pl2):
     _distance = distance(pl1.coordinates, pl2.coordinates)
 
     # Gravitational vector
-    gravitational_pull = (pl1.mass * pl2.mass) / (_distance ** 2)
+    gravitational_pull = 0.7 * (pl1.mass * pl2.mass) / (_distance ** 2)
 
     dx, dy = return_direction(angle)
     gravity_vector = gravitational_pull * pygame.Vector2(dx, dy)
@@ -65,25 +73,31 @@ def move_planets(pl1, pl2):
     # Calculating the new direction vector
     pl1.velocity += gravity_vector
 
-    if _distance != 0:
-        pl1.move()
+    pl1.move()
 
 def main(surface):
     """ Main function """
     run = True
 
     # Yes, I know that the Sun is a star but it's easier this way
-    sun = Planet(50, H_WIDTH, H_WIDTH, 0, 0, 20, YELLOW)
-    earth = Planet(25, 100, H_WIDTH, 0, 1, 4, BLUE)
+    sun = Planet(400, H_WIDTH, H_WIDTH, 0, 0, 15, YELLOW)
+    mercury = Planet(2, H_WIDTH - 50, H_WIDTH, 0, 1, 1, ORANGE)
+    venus = Planet(3, H_WIDTH - 75, H_WIDTH, 0, 1, 2, ORANGE)
+    earth = Planet(2, H_WIDTH - 100, H_WIDTH, 0, 1, 1, BLUE)
+    mars = Planet(2, H_WIDTH - 125, H_WIDTH, 0, 1, 1, RED)
+    jupiter = Planet(10, H_WIDTH - 150, H_WIDTH, 0, 1, 7, JUPITER)
+    saturn = Planet(10, H_WIDTH - 185, H_WIDTH, 0, 1, 6, GRAY)
+    uranus = Planet(8, H_WIDTH - 220, H_WIDTH, 0, 1, 5, URANUS)
+    neptune = Planet(8, H_WIDTH - 250, H_WIDTH, 0, 1, 5, PURPLE)
 
     # Planet list
-    planets = [sun, earth]
+    planets = [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune]
 
     while run:
         clock.tick(60)
 
-        move_planets(earth, sun)
-        draw_planets(surface, planets)
+        draw_planets(surface, planets, sun)
+        #move_planets(earth, sun)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
