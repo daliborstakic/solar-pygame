@@ -8,6 +8,7 @@ class Planet():
         self._mass = mass
         self._radius = radius
         self.color = color
+        self.speed = 2
         self._velocity = Vector2(dx, dy)
 
     @property
@@ -60,5 +61,5 @@ class Planet():
         pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
 
     def move(self):
-        self.x += self.velocity.x
-        self.y += self.velocity.y
+        self.x += int(self.speed * self.velocity.x)
+        self.y += int(self.speed * self.velocity.y)
